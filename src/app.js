@@ -33,31 +33,7 @@ class App extends Component {
     static propTypes = {
         children: PropTypes.node,
     };
-    componentDidMount() {
-        this.getPosts();
-    }
-    componentDidCatch(err, info) {
-        console.error(err);
-        console.error(info);
-        this.setState(() => ({
-            error: err,
-        }));
-    }
-    getPosts() {
-        API.fetchPosts(this.state.endpoint)
-            .then(res => {
-                return res.json().then(posts => {
-                    const links = parseLinkHeader(res.headers.get('Link'));
-                    this.setState(() => ({
-                        posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
-                        endpoint: links.next.url,
-                    }));
-                });
-            })
-            .catch(err => {
-                this.setState(() => ({ error: err }));
-            });
-    }
+
     render() {
         if (this.state.error) {
             return (
