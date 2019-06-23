@@ -11,6 +11,7 @@ import * as API from './shared/http';
 import Ad from './components/ad/Ad';
 import Post from './components/post/Post';
 import Welcome from './components/welcome/Welcome';
+import CreatePost from "./components/post/Create";
 
 /**
  * The app component serves as a root for the project and renders either children,
@@ -77,8 +78,8 @@ class App extends Component {
                     <div className="home">
                         <Welcome/>
                         <div>
-                            {
-                                this.state.posts.length &&(
+                            <CreatePost/>
+                            {this.state.posts.length &&(
                                     <div className="posts">
                                         {
                                             this.state.posts.map(({id})=>(
