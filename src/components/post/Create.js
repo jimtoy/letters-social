@@ -36,13 +36,25 @@ class CreatePost extends Component{
     }
 
     handleSubmit(e){
+        e.preventDefault();
         if(!this.state.valid){
             console.log("Invalid Length");
             return;
         }
-        const newPost={
-            content: this.state.content
-        };
+        if(this.props.onSubmit){
+            console.log("submitting");
+            const newPost={
+                date: Date.now(),
+                id: Date.now(),
+                content: this.state.content
+            };
+
+            this.props.onSubmit(newPost);
+            this.setState({
+                content: '',
+                valid: null
+            })
+        }
 
         console.log(this.state);
     }

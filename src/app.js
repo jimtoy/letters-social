@@ -30,6 +30,7 @@ class App extends Component {
                 .ENDPOINT}/posts?_page=1&_sort=date&_order=DESC&_embed=comments&_expand=user&_embed=likes`,
         };
         this.getPosts = this.getPosts.bind(this);
+        this.createNewPost = this.createNewPost.bind(this);
 
     }
     static propTypes = {
@@ -46,6 +47,21 @@ class App extends Component {
         this.setState( () => ({
            error: error
         }));
+    }
+
+    createNewPost(post) {
+        return API.createPost(post)
+            .then(res => res.json())
+            .then(newPost => {
+                this.setState(prevState => {
+                    return {
+                        posts: orderBy(prevState.posts.concat(newPost), 'date', 'desc')
+                    };
+                });
+            })
+            .catch(err => {
+                this.setState(() => ({ error: err }));
+            });
     }
 
     getPosts(){
@@ -78,7 +94,7 @@ class App extends Component {
                     <div className="home">
                         <Welcome/>
                         <div>
-                            <CreatePost/>
+                            <CreatePost onSubmit={this.createNewPost}/>
                             {this.state.posts.length &&(
                                     <div className="posts">
                                         {
