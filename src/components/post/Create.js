@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import DisplayMap from "../map/DisplayMap";
 
 
 class CreatePost extends Component{
@@ -22,6 +23,7 @@ class CreatePost extends Component{
                 value={this.state.content}
                 onChange={this.handlePostChange}
                 placeholder="What's on your mind?"/>
+            <DisplayMap/>
         </div>)
     }
 
