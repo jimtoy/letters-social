@@ -30,8 +30,8 @@ export default class DisplayMap extends Component{
     static defaultProps ={
       displayOnly: false,
       location: {
-          lat: 34.1535641,
-          lng: -85.0511,
+          lat: 39.683723,
+          lng: -75.749657,
           name: null
       }
     };
