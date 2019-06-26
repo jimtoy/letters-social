@@ -15,7 +15,7 @@ export default class DisplayMap extends Component{
         };
         this.ensureMapExists = this.ensureMapExists.bind(this);
         this.updateMapPosition = this.updateMapPosition.bind(this);
-        this.generateStaticMapImage = this.generateStaticMapImage.bind(this);
+        DisplayMap.generateStaticMapImage = DisplayMap.generateStaticMapImage.bind(this);
     }
 
     static propTypes ={
@@ -32,7 +32,7 @@ export default class DisplayMap extends Component{
       location: {
           lat: 39.683723,
           lng: -75.749657,
-          name: null
+          name: "Newark"
       }
     };
 
@@ -59,7 +59,7 @@ export default class DisplayMap extends Component{
         }
     }
 
-    generateStaticMapImage(lat, lng){
+    static generateStaticMapImage(lat, lng){
                 return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${lat},${lng},12,0,0/600x175?access_token=${process.env.MAPBOX_API_TOKEN}`;
 
     }
@@ -106,14 +106,19 @@ export default class DisplayMap extends Component{
                     {!this.state.mapLoaded && (
                         <img
                             className="map"
-                            src={this.generateStaticMapImage(this.state.location.lat, this.state.location.lng)}
+                            src={DisplayMap.generateStaticMapImage(this.state.location.lat, this.state.location.lng)}
                             alt={this.state.location.name}
                             />
                     )}
                 </div>
-            </div>
+            </div>,
+            this.props.displayOnly && (
+                <div key="location-description" className="location-description">
+                    <i className="location-icon fa fa-location-arrow"/>
+                    <span className="location-name">{this.state.location.name}</span>
+                </div>
+            )
         ];
     }
-
 }
 
