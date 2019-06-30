@@ -5,7 +5,7 @@ import invariant from 'invariant';
 class Route extends Component {
     static propTypes = {
         path: PropTypes.string,
-        component: PropTypes.oneofType([PropTypes.element, PropTypes.func])
+        component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     };
 
     render() {

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Component} from 'react';
 import enroute from 'enroute';
@@ -21,7 +22,7 @@ export default class Router extends Component{
     }
 
     normalizeRoute(path, parent){
-        if(path[0] --- '/'){
+        if(path[0] === '/'){
             return path;
         }
 
