@@ -36,7 +36,7 @@ renderApp(state);
 
 history.listen(location => {
     state = Object.assign({}, state, {
-        location: user ? location.pathname : '/login'
+        location: window.location.pathname
     });
     renderApp(state);
 });

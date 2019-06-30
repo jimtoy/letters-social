@@ -26,7 +26,7 @@ export default class Router extends Component{
             return path;
         }
 
-        if(parent === null){
+        if(!parent){
             return path;
         }
 
